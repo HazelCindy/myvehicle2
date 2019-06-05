@@ -1,6 +1,5 @@
 package com.grace.myvehicle;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.annotation.Annotation;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class SignupActivity extends AppCompatActivity {
@@ -32,13 +29,12 @@ public class SignupActivity extends AppCompatActivity {
     EditText email,password,confirm_password;
 
     private FirebaseAuth auth;
-    private TextView dataTextview;
 
     private DatabaseReference root;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup2);
+        setContentView(R.layout.activity_signup);
 
         auth = FirebaseAuth.getInstance();
 
@@ -46,7 +42,6 @@ public class SignupActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference (  "message");
 
         root = FirebaseDatabase.getInstance().getReference();
-        dataTextview = findViewById(R.id.textview);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -55,15 +50,15 @@ public class SignupActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                dataTextview.setText(value);
-                // Log.d("", "Value is: " + value);
+                //dataTextview.setText(value);
+                Log.d("SIGNUP", "Value is: " + value);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                dataTextview.setText("Error " + databaseError.toString());
+                //dataTextview.setText("Error " + databaseError.toString());
                 // Failed to read value
-                //Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w("SIGNUP", "Failed to read value.",    databaseError.toException());
             }
         });
 

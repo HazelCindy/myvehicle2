@@ -4,9 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF6F6"
     android:orientation="vertical"
-    tools:context="com.grace.myvehicle.SignupActivity">
+    tools:context=".SignupActivity">
 
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MY VEHICLE"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20sp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:inputType="textPassword"
         android:id="@+id/password"
         android:hint="Enter Password"/>
 
@@ -32,15 +48,19 @@
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:layout_margin="10dp"
         android:hint="Confirm Password" />
 
     <Button
         android:id="@+id/signup"
-        android:layout_width="331dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="SIGN UP" />
+
 
 </LinearLayout>
