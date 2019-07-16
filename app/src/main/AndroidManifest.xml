@@ -29,9 +29,9 @@
             android:value="AIzaSyAuRK1vvgtTQMpFG8PVrVXwPSWjRPqiQSs" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".loginactivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".loginactivity">
+        <activity android:name=".MapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
