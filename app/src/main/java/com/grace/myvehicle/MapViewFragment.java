@@ -67,6 +67,10 @@ public class MapViewFragment extends Fragment implements
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
     private LocationRequest mLocationRequest;
+    private LatLngBounds Juja= new LatLngBounds(
+            new LatLng(-1.095606, 37.013733),new LatLng(-1.095499, 37.013720));
+
+
 
     private Context context;
     private FragmentActivity activity;
