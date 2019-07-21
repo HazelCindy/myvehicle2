@@ -1,6 +1,8 @@
 package com.grace.myvehicle;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +29,7 @@ import static android.widget.Toast.LENGTH_LONG;
 public class SignupActivity extends AppCompatActivity {
     Button signup;
     EditText email,password,confirm_password;
-
+    private ProgressDialog progressDialog;
     private FirebaseAuth auth;
 
     private DatabaseReference root;
@@ -37,6 +39,8 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference (  "message");
@@ -61,11 +65,10 @@ public class SignupActivity extends AppCompatActivity {
                 Log.w("SIGNUP", "Failed to read value.",    databaseError.toException());
             }
         });
-
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         confirm_password = (EditText) findViewById(R.id.confirm_password);
-
+        progressDialog = new ProgressDialog(this);
         signup = (Button)findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +90,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
     public void registerUser(String emailstring, String passwordstring) {
         final Task<AuthResult> authResultTask = auth.createUserWithEmailAndPassword(emailstring, passwordstring).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -107,10 +111,13 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, "Registration Failed "+task.getException().toString(),LENGTH_LONG).show();
                     finish();
                 }
-
+                progressDialog.dismiss();
             }
         });
+
     }
+
+
 }
 
 

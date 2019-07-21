@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -45,11 +47,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,6 +73,13 @@ public class MapViewFragment extends Fragment implements
 
     private static final int LOCATION_REQUEST = 100;
     private static final int REQUEST_USER_TO_ENABLE_LOCATION_REQUEST = 300;
+
+    private String string_latitude;
+    private String string_longitude;
+
+    DatabaseReference databaseReference;
+
+    private FirebaseAuth firebaseAuth;
 
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
@@ -105,6 +122,15 @@ public class MapViewFragment extends Fragment implements
         FragmentManager fragmentManager = getChildFragmentManager();
         SupportMapFragment mapFragment = (SupportMapFragment)fragmentManager.findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        string_latitude = getArguments().getString("latitude");
+        string_longitude = getArguments().getString("longitude");
+
+        Toast.makeText(context, "Vehicle Latitude is:"+string_latitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Vehicle Longitude is:"+string_longitude, Toast.LENGTH_SHORT).show();
+
+
+
 
 
         return view;
@@ -195,7 +221,7 @@ public class MapViewFragment extends Fragment implements
     private void zoomToLocation(LatLng location){
         if (mMap != null && location!=null){
             CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(location).zoom(14).build();
+                    .target(location)/*.zoom(20)*/.build();
 
             mMap.animateCamera(CameraUpdateFactory
                     .newCameraPosition(cameraPosition));
@@ -230,7 +256,7 @@ public class MapViewFragment extends Fragment implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setContentDescription("IZI");
+        mMap.setContentDescription("owner");
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
@@ -246,6 +272,7 @@ public class MapViewFragment extends Fragment implements
             }
         });
 
+
     }
     protected synchronized void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(activity)
@@ -258,12 +285,29 @@ public class MapViewFragment extends Fragment implements
     }
     private void showCurrentLocationMarker(LatLng location) {
         if (location != null) {
+            firebaseAuth = FirebaseAuth.getInstance();
             refreshMap();
             zoomToLocation(location);
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(location);
             mMap.addMarker(markerOptions);
             mMap.setOnMarkerClickListener(this);
+
+            string_latitude = getArguments().getString("latitude");
+            string_longitude = getArguments().getString("longitude");
+
+            double parsed_latitude = Double.parseDouble(string_latitude);
+            double parsed_longitude = Double.parseDouble(string_longitude);
+
+
+            /*mMap.addMarker(new MarkerOptions().position(new LatLng(parse_latitude,parse_longitude)).title("Vehicle Location").snippet("Your Vehicle is Here"));
+            CameraPosition Camera = CameraPosition.builder().target(new LatLng(parse_latitude,parse_longitude))*//*.zoom(16).bearing(0).tilt(45)*//*.build();
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(Camera));*/
+
+            mMap.addMarker(new MarkerOptions().position(new LatLng(parsed_latitude, parsed_longitude))
+                    .title("Vehicle Location").icon(BitmapDescriptorFactory
+                            .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(parsed_latitude, parsed_longitude), 8));
         }
 
     }
