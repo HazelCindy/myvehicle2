@@ -13,5 +13,13 @@
         android:id="@+id/mapLayout"
         android:layout_height="match_parent">
     </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:text="Vehicle details"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:id="@+id/details"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

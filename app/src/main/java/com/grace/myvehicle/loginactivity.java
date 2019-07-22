@@ -45,22 +45,24 @@ public class loginactivity extends AppCompatActivity {
 
                 String email1 = email.getText().toString();
                 String password1 = password.getText().toString();
-                if (email1.isEmpty() || password1.isEmpty()) {
-                    Toast.makeText(loginactivity.this, "Please fill in the email and password", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    auth.signInWithEmailAndPassword(email1, password1).addOnCompleteListener(loginactivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(loginactivity.this, "Welcome ", Toast.LENGTH_LONG ).show();
-                                startActivity(new Intent(loginactivity.this, MapsActivity.class));
-                            }else {
-                                Toast.makeText( loginactivity.this, "Incorrect email or password", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
+//                if (email1.isEmpty() || password1.isEmpty()) {
+//                    Toast.makeText(loginactivity.this, "Please fill in the email and password", Toast.LENGTH_LONG).show();
+//                }
+//                else{
+//                    auth.signInWithEmailAndPassword(email1, password1).addOnCompleteListener(loginactivity.this, new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if (task.isSuccessful()) {
+//                                Toast.makeText(loginactivity.this, "Welcome ", Toast.LENGTH_LONG ).show();
+//                                startActivity(new Intent(loginactivity.this, MapsActivity.class));
+//                            }else {
+//                                Toast.makeText( loginactivity.this, "Incorrect email or password", Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    });
+//                }
+
+
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
