@@ -71,8 +71,8 @@ public class MapViewFragment extends Fragment implements
         GoogleApiClient.OnConnectionFailedListener, LocationListener,
         GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
-    private static final int LOCATION_REQUEST = 100;
-    private static final int REQUEST_USER_TO_ENABLE_LOCATION_REQUEST = 300;
+  private static final int LOCATION_REQUEST = 100;
+ private static final int REQUEST_USER_TO_ENABLE_LOCATION_REQUEST = 300;
 
     private String string_latitude;
     private String string_longitude;
@@ -288,16 +288,16 @@ public class MapViewFragment extends Fragment implements
             firebaseAuth = FirebaseAuth.getInstance();
             refreshMap();
             zoomToLocation(location);
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(location);
-            mMap.addMarker(markerOptions);
-            mMap.setOnMarkerClickListener(this);
+           MarkerOptions markerOptions = new MarkerOptions();
+           markerOptions.position(location);
+           mMap.addMarker(markerOptions);
+          mMap.setOnMarkerClickListener(this);
 
             string_latitude = getArguments().getString("latitude");
             string_longitude = getArguments().getString("longitude");
 
-            double parsed_latitude = Double.parseDouble(string_latitude);
-            double parsed_longitude = Double.parseDouble(string_longitude);
+            float parsed_latitude = Float.parseFloat(string_latitude);
+            float parsed_longitude = Float.parseFloat(string_longitude);
 
 
             /*mMap.addMarker(new MarkerOptions().position(new LatLng(parse_latitude,parse_longitude)).title("Vehicle Location").snippet("Your Vehicle is Here"));

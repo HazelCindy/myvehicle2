@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF6F6"
+    android:background="#E5E4E2"
     android:orientation="vertical"
     android:layout_gravity="center"
     tools:context="com.grace.myvehicle.loginactivity">
@@ -44,14 +44,15 @@
         android:id="@+id/password"
         android:hint="Enter Password"
         android:autofillHints="" />
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:text="SIGN IN"
-        android:background="@color/colorPrimary"
-        android:textColor="#fff"
         android:id="@+id/signin"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/colorPrimary"
+        android:text="SIGN IN"
+        android:textColor="#fff" />
     <Button
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,7 @@ public class MapsActivity extends AppCompatActivity {
 
     private String latitude;
     private String longitude;
+    Button details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class MapsActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("db").child("vehicle_tracker").child("KCD435J");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("db").child("vehicle_tracker").child("KCD435J-");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -62,4 +64,6 @@ public class MapsActivity extends AppCompatActivity {
 
 
     }
+
+
 }

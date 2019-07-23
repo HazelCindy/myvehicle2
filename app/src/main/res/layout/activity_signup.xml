@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF6F6"
+    android:background="#E5E4E2"
     android:orientation="vertical"
     tools:context=".SignupActivity">
 
-
+    <ImageView
+        android:layout_width="143dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/images" />
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MY VEHICLE"
+        android:text="SafiriEazzieOwner"
         android:textStyle="bold"
         android:textSize="30sp"
         android:layout_marginBottom="20dp"
