@@ -42,7 +42,7 @@
         android:layout_margin="20dp"
         android:inputType="textPassword"
         android:id="@+id/password"
-        android:hint="Enter Password"
+        android:hint="Enter code"
         android:autofillHints="" />
 
     <Button
@@ -53,14 +53,5 @@
         android:background="@color/colorPrimary"
         android:text="SIGN IN"
         android:textColor="#fff" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:background="@color/colorPrimary"
-        android:textColor="#fff"
-        android:layout_marginRight="20dp"
-        android:text="SIGN UP"
-        android:id="@+id/signup"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

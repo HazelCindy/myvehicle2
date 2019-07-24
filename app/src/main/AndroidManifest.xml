@@ -16,9 +16,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:label="Transactions"
+            android:name=".TransactionsActivity"></activity>
         <activity android:name=".SignupActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,16 +37,16 @@
 
         <activity
             android:name=".loginactivity"
-            android:label="SafiriEazzieOwner" >
+            android:label="SafiriEazzieOwner">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity">
+        <activity
 
-        </activity>
+            android:name=".MapsActivity"></activity>
     </application>
 
 </manifest>

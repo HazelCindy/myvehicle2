@@ -13,5 +13,15 @@
         android:id="@+id/mapLayout"
         android:layout_height="match_parent">
     </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/transactions"
+        android:text = "VIEW PAYMENTS"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

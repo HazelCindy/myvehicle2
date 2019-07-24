@@ -212,8 +212,8 @@ public class MapViewFragment extends Fragment implements
     @Override
     public void onLocationChanged(Location location) {
 
-        zoomToLocation(new LatLng(location.getLatitude(),location.getLongitude()));
-        showCurrentLocationMarker(new LatLng(location.getLatitude(),location.getLongitude()));
+        //zoomToLocation(new LatLng(location.getLatitude(),location.getLongitude()));
+        //showCurrentLocationMarker(new LatLng(location.getLatitude(),location.getLongitude()));
 
 
     }
@@ -288,10 +288,10 @@ public class MapViewFragment extends Fragment implements
             firebaseAuth = FirebaseAuth.getInstance();
             refreshMap();
             zoomToLocation(location);
-           MarkerOptions markerOptions = new MarkerOptions();
-           markerOptions.position(location);
-           mMap.addMarker(markerOptions);
-          mMap.setOnMarkerClickListener(this);
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(location);
+            mMap.addMarker(markerOptions);
+            mMap.setOnMarkerClickListener(this);
 
             string_latitude = getArguments().getString("latitude");
             string_longitude = getArguments().getString("longitude");

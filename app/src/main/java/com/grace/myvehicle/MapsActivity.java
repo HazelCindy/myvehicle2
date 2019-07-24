@@ -1,12 +1,14 @@
 package com.grace.myvehicle;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,14 +26,28 @@ public class MapsActivity extends AppCompatActivity {
     private String latitude;
     private String longitude;
     Button details;
+    Button transactions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        transactions = (Button)findViewById(R.id.transactions);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+
+        transactions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), TransactionsActivity.class));
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("db").child("vehicle_tracker").child("KCD435J-");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -57,10 +73,6 @@ public class MapsActivity extends AppCompatActivity {
 
             }
         });
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
     }
